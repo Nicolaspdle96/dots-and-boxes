@@ -16,6 +16,11 @@ class App < Sinatra::Base
         @pl2 = Player.new(params[:player2])
         erb:game
     end
+
+    get '/pvsp' do  #player VS player
+        board = Board.new(4)
+        board.generateHTML() + board.generateCss()
+
     
     run! if app_file == $0;
 end
