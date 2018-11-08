@@ -20,6 +20,7 @@ class App < Sinatra::Base
     get '/pvsp' do  #player VS player
         board = Board.new(4)
         board.generateHTML() + board.generateCss()
+
     
     run! if app_file == $0;
 end
