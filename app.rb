@@ -7,7 +7,6 @@ class App < Sinatra::Base
         erb:home
     end
 
-<<<<<<< HEAD
     get '/players' do
         erb:players
     end 
@@ -17,11 +16,11 @@ class App < Sinatra::Base
         @pl2 = Player.new(params[:player2])
         erb:game
     end
-=======
-    post '/players' do
-        erb:players
-      end
->>>>>>> dev
+
+    get '/pvsp' do  #player VS player
+        board = Board.new(4)
+        board.generateHTML() + board.generateCss()
+
     
     run! if app_file == $0;
 end
