@@ -11,11 +11,11 @@ describe Box do
     end
 
     it 'should generate html for a box' do 
-        expect(@box.generateHTML()).to include "<div class=box>"
+        expect(@box.generateHtml()).to include "</div>"
     end
 
     it 'should generate css for a box' do 
-        expect(@box.generateCSS()).to include "<style>"
+        expect(@box.generateCss()).to include "<style>"
     end
 
     it "should get red color for player 1" do 
@@ -33,9 +33,16 @@ describe Box do
         expect(@box.upSide).to eq true
     end
 
-   
+    it 'should return true for "isCompleted" when all the sides are filled' do
+        @box.upSide = true
+        @box.downSide = true
+        @box.leftSide = true
+        @box.rightSide = true
+        expect(@box.isCompleted()).to be true 
+    end
 
    
+
 
 
 end

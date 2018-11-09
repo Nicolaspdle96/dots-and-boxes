@@ -2,7 +2,7 @@ require 'sinatra'
 
 class Box
 
-    attr_reader :upSide, :downSide, :leftSide, :rightSide, :color
+    attr_reader :numberIdentifier, :upSide, :downSide, :leftSide, :rightSide, :color
    
     def initialize(numberIdentifier)
         @numberIdentifier = numberIdentifier
@@ -10,7 +10,8 @@ class Box
         @downSide = false
         @leftSide = false
         @rightSide = false
-        @color = "green"
+        @color = "red"
+        @backgroundColor = "red"
     end
 
     def upSide=(value)              
@@ -38,18 +39,19 @@ class Box
     end
 
 
-    def generateHTML()
-        
-        return  "<div class=box>" + @numberIdentifier.to_s +  "</div>"
+    def generateHtml()
+        return  "<div class=box" +  @numberIdentifier.to_s + ">" + @numberIdentifier.to_s +  "</div>"
     end
 
-    def generateCSS()
+    def generateCss()
         cssInit =  "<style>" 
-        cssClassBox = ".box{"
-        cssContent = "width: 50px;
-                      height: 50px;
-                      line-height: 50px;
+        cssClassBox = ".box"
+        cssID = numberIdentifier.to_s + "{" 
+        cssContent = "width: 100px;
+                      height: 100px;
+                      line-height: 100px;
                       border-style: solid;
+                      border-color: rgb(0,0,0,0.1);
                       text-align: center;
                       display: inline-block;"
         cssClssBoxEnd = "}"
@@ -67,10 +69,22 @@ class Box
         if @rightSide == true then
             cssContent += "border-right-color:"+ @color + ";"
         end
+        
+        if isCompleted() then
+            cssContent += "background-color:"+ @backgroundColor + ";"
+        end
 
-        completeCss = cssInit + cssClassBox + cssContent + cssEnd
+        completeCss = cssInit + cssClassBox + cssID + cssContent + cssEnd
     
         return completeCss
+    end
+
+    def isCompleted()
+        @upSide == true and @downSide == true and @leftSide == true and @rightSide == true ? true : false
+    end
+
+    def renderHTMLandCSS()
+        return generateHtml() + generateCss()
     end
 
     def setPlayer1Turn()
