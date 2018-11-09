@@ -1,8 +1,19 @@
 require 'sinatra'
+require './lib/board'
 require './lib/player'
+require './lib/movement'
+require './lib/controls'
 
 
-class App < Sinatra::Base
+
+class App < Sinatra::Base  
+
+    set :movementList, []
+  
+    configure do
+        set :my_config_property, 'hello world'
+    end
+
     get '/' do
         erb:home
     end
@@ -18,8 +29,18 @@ class App < Sinatra::Base
     end
 
     get '/pvsp' do  #player VS player
+     
+        controls = Controls.new()
         board = Board.new(4)
-        board.generateHTML() + board.generateCss()
+        
+        numberOfBox =  params[:box].to_i
+        direction = params[:direction].to_s
+        newMove = Movement.new(numberOfBox,direction)
+        
+        settings.movementList.push(newMove)
+
+        board.generateHTMLandCss(settings.movementList) + controls.returnHTML
+    end
 
     
     run! if app_file == $0;
