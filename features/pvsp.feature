@@ -5,7 +5,7 @@ Feature: play game
 
     Scenario: see the board
         Given the pvsp page
-        Then I press see the board
+        Then I see the 4x4 board
     Scenario: see the turn
         Given the pvsp page
         Then I see whose turn is it

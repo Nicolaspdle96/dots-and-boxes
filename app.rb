@@ -1,8 +1,22 @@
 require 'sinatra'
-require './lib/player'
 require './lib/board'
+require './lib/player'
+require './lib/movement'
+require './lib/controls'
 
-class App < Sinatra::Base
+
+
+class App < Sinatra::Base  
+
+    set :movementList, []
+    set :savedP1, ''
+    set :savedP2, ''
+    set :turn, 1
+  
+    configure do
+        set :my_config_property, 'hello'
+    end
+
     get '/' do
         erb:home
     end
@@ -17,10 +31,43 @@ class App < Sinatra::Base
     end
 
     get '/pvsp' do  #player VS player
-        @pl1 = Player.new(params[:player1])
-        @pl2 = Player.new(params[:player2])  
+        
+        #seting board
+        controls = Controls.new()
         board = Board.new(4)
-        @pl1.generateHTMLPlayer() + board.generateHTML() + board.generateCss()  
+     
+        #setting names
+        player1 = Player.new(params[:player1])
+        player2 = Player.new(params[:player2])
+
+        if player1.name != nil and player2 != nil then
+            settings.savedP1 = player1.name.to_s
+            settings.savedP2 = player2.name.to_s
+        end
+
+        if settings.turn == 1
+            acutalPlayer = Player.new(settings.savedP1)
+            settings.turn = 2
+        else
+            acutalPlayer = Player.new(settings.savedP2)
+            settings.turn = 1
+        end
+        
+       ## acutalPlayer = Player.new(settings.savedP2)
+        
+
+        #setting game functionality
+        numberOfBox =  params[:box].to_i
+        direction = params[:direction].to_s
+        newMove = Movement.new(numberOfBox,direction)
+        settings.movementList.push(newMove)   
+
+    
+        #render the board
+        acutalPlayer.generateHTMLPlayer() + board.generateHTMLandCss(settings.movementList) + controls.returnHTML
+       
     end
+
+    
     run! if app_file == $0;
 end
