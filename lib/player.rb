@@ -1,5 +1,7 @@
 class Player
 
+    attr_reader :name
+
     def initialize(name)
         @name = name
     end
@@ -10,6 +12,10 @@ class Player
 
     def setName(newName)
         @name = newName
+    end
+
+    def generateHTMLPlayer()
+        return '<h2> El turno es de:' +  @name  + '</h2>'
     end
     
 end

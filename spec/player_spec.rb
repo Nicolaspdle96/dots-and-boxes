@@ -20,4 +20,13 @@ describe Player do
         expect(@pl.getName()).to eq 'Gerard'
     end
 
+    it "should generate the HTML to show the turn" do   
+        expect(@pl.generateHTMLPlayer()).to include '<h2>'
+    end
+
+    it "should show the name off the player" do
+        @pl.setName('Ana')
+        expect(@pl.generateHTMLPlayer()).to include 'Ana'
+    end
+
 end

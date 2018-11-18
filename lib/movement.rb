@@ -14,7 +14,5 @@ class Movement
     def direction=(value)              
         @direction = value
     end
-
-
  
 end
