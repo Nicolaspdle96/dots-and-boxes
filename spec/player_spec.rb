@@ -29,4 +29,13 @@ describe Player do
         expect(@pl.generateHTMLPlayer()).to include 'Ana'
     end
 
+    it "should create a player with 0 points" do
+        expect(@pl.getScore()).to eq 0
+    end
+
+    it "should increase the score of a player when he complete one box" do
+        @pl.setScore(1);
+        expect(@pl.getScore()).to eq 1
+    end
+
 end

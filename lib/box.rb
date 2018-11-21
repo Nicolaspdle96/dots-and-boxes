@@ -2,7 +2,7 @@ require 'sinatra'
 
 class Box
 
-    attr_reader :numberIdentifier, :upSide, :downSide, :leftSide, :rightSide, :color
+    attr_reader :numberIdentifier, :upSide, :downSide, :leftSide, :rightSide, :color, :player
    
     def initialize(numberIdentifier)
         @numberIdentifier = numberIdentifier
@@ -12,6 +12,7 @@ class Box
         @rightSide = false
         @color = "red"
         @backgroundColor = "red"
+        @player = ""
     end
 
     def upSide=(value)              
@@ -36,6 +37,10 @@ class Box
 
     def isEmpty()
         @leftSide == false and @rightSide == false and @upSide == false and @downSide == false ?  true :  false
+    end
+
+    def player=(value)              
+        @player = value
     end
 
 

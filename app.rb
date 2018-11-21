@@ -26,13 +26,12 @@ class App < Sinatra::Base
     end 
 
     get '/game' do
-       
         erb:game
     end
 
     get '/pvsp' do  #player VS player
         
-        #seting board
+        #setting board
         controls = Controls.new()
         board = Board.new(4)
      
@@ -46,25 +45,27 @@ class App < Sinatra::Base
         end
 
         if settings.turn == 1
-            acutalPlayer = Player.new(settings.savedP1)
+            actualPlayer = Player.new(settings.savedP1)
             settings.turn = 2
         else
-            acutalPlayer = Player.new(settings.savedP2)
+            actualPlayer = Player.new(settings.savedP2)
             settings.turn = 1
         end
         
-       ## acutalPlayer = Player.new(settings.savedP2)
-        
+       ## actualPlayer = Player.new(settings.savedP2)
 
         #setting game functionality
         numberOfBox =  params[:box].to_i
         direction = params[:direction].to_s
-        newMove = Movement.new(numberOfBox,direction)
-        settings.movementList.push(newMove)   
+        newMove = Movement.new(numberOfBox,direction, actualPlayer.name)
+        settings.movementList.push(newMove)
 
-    
+        board.verify(settings.movementList)
+        actualPlayer.setScore(board.countPoints(actualPlayer.name))
+        
         #render the board
-        acutalPlayer.generateHTMLPlayer() + board.generateHTMLandCss(settings.movementList) + controls.returnHTML
+        actualPlayer.generateHTMLPlayer() + board.generateHTMLandCss(settings.movementList) + controls.returnHTML
+
        
     end
 
