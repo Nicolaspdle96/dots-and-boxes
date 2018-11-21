@@ -2,7 +2,7 @@ Given("the home page") do
     visit('/')
   end
   
-  When("I press the button {string} to play") do |button|
+  When("I press the button {string}") do |button|
     click_button(button)
   end
   

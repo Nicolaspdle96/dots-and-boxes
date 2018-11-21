@@ -10,7 +10,7 @@ class Box
         @downSide = false
         @leftSide = false
         @rightSide = false
-        @color = "red"
+        @color = "pink"
         @backgroundColor = "red"
     end
 

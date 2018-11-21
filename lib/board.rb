@@ -23,7 +23,7 @@ class Board
 
                 for movement in movements
                     if $j == movement.id then
-                        processMovement(movement.direction, @box)
+                        processMovement(movement.direction, @box, movement.turn)
                     else
                         @hasError = true
                         @errorMessage = "Movilimiento invalido"
@@ -43,7 +43,7 @@ class Board
     
     end
 
-    def processMovement(direction, box)
+    def processMovement(direction, box, turn)
         case direction
         when 'up'
             box.upSide = true
@@ -53,6 +53,13 @@ class Board
             box.leftSide = true
         when 'right'
             box.rightSide = true
+        end
+
+        case turn
+        when 1
+            box.color = "red"
+        when 2
+            box.color = "blue"
         end
     end
 
