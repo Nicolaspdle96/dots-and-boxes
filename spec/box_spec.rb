@@ -10,14 +10,17 @@ describe Box do
         expect(@box.isEmpty()).to eq true 
     end
 
+    #TODO: MEJORAR
     it 'should generate html for a box' do 
         expect(@box.generateHtml()).to include "</div>"
     end
 
+    #TODO: MEJORAR
     it 'should generate css for a box' do 
         expect(@box.generateCss()).to include "<style>"
     end
 
+    #TODO: REVISAR IT MAY CHANGE
     it "should get red color for player 1" do 
         @box.setPlayer1Turn()
         expect(@box.color).to eq "red"

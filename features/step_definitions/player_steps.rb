@@ -10,6 +10,8 @@ Given("I fill the second {string} with {string}") do |field, name|
     fill_in 'player2', :with => name
 end
 
-Then("I press the button {string}") do |button|
-    click_button(button)
+#TODO: REVISAR
+
+Then("I press the button {string} to play") do |button|
+   expect(page).to have_selector('input[type=submit][value=Jugar]')
 end

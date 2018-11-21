@@ -7,6 +7,7 @@ class Board
 
     def initialize(size)
         @size = size
+        #TODO: Que no cambie el turno al haber un error
         @hasError = false
         @errorMessage = ""
         @completedBoxes = []
@@ -24,7 +25,7 @@ class Board
 
                 for movement in movements
                     if $j == movement.id then
-                        processMovement(movement.direction, @box, movement.player)
+                        processMovement(movement.direction, @box, movement.player, movement.turn)
                     else
                         @hasError = true
                         @errorMessage = "Movilimiento invalido"
@@ -41,6 +42,7 @@ class Board
         return completeHTML
     end
 
+    #TODO: REFACTORIZAR ESTO 
     def countPoints(player)
         total = 0
         for completedBox in completedBoxes
@@ -51,6 +53,7 @@ class Board
         return total
     end
 
+    #TODO: REFACTORIZAR
     def verify(movements)
         $j = 1
         $i = 1
@@ -61,7 +64,7 @@ class Board
                 @box = Box.new($j)
                 for movement in movements
                     if $j == movement.id then
-                        processMovement(movement.direction, @box, movement.player)
+                        processMovement(movement.direction, @box, movement.player, movement.turn)
                     end
                 end
                 $j +=1
@@ -71,7 +74,7 @@ class Board
         end
     end
 
-    def processMovement(direction, box, player)
+    def processMovement(direction, box, player, turn)
         case direction
         when 'up'
             box.upSide = true
@@ -83,9 +86,17 @@ class Board
             box.rightSide = true
         end
 
+        #TODO: REFACTOR
         if box.isCompleted() then
-            box.player = player
-            completedBoxes.push(@box.player)
+            completedBoxes.push(player)
+        end
+
+        #TODO: REFACTOR
+        case turn
+        when 1
+            box.color = "red"
+        when 2
+            box.color = "blue"
         end
     end
 

@@ -2,7 +2,7 @@ require 'sinatra'
 
 class Box
 
-    attr_reader :numberIdentifier, :upSide, :downSide, :leftSide, :rightSide, :color, :player
+    attr_reader :numberIdentifier, :upSide, :downSide, :leftSide, :rightSide, :color
    
     def initialize(numberIdentifier)
         @numberIdentifier = numberIdentifier
@@ -10,9 +10,9 @@ class Box
         @downSide = false
         @leftSide = false
         @rightSide = false
-        @color = "red"
+        #TODO: ADD MORE VARIABLES FOR EACH SIDE
+        @color = "pink"
         @backgroundColor = "red"
-        @player = ""
     end
 
     def upSide=(value)              
@@ -31,6 +31,7 @@ class Box
         @rightSide = value
     end
 
+    #TODO: ADD MORE VARIABLES FOR EACH SIDE
     def color=(value)              
         @color = value
     end
@@ -38,11 +39,6 @@ class Box
     def isEmpty()
         @leftSide == false and @rightSide == false and @upSide == false and @downSide == false ?  true :  false
     end
-
-    def player=(value)              
-        @player = value
-    end
-
 
     def generateHtml()
         return  "<div class=box" +  @numberIdentifier.to_s + ">" + @numberIdentifier.to_s +  "</div>"
@@ -92,6 +88,7 @@ class Box
         return generateHtml() + generateCss()
     end
 
+    #TODO: REFACTOR
     def setPlayer1Turn()
         @color = "red"
     end

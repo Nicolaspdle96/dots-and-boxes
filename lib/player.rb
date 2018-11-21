@@ -2,6 +2,7 @@ class Player
 
     attr_reader :name, :score
 
+    #AGREGAR COLOR
     def initialize(name)
         @name = name
         @score = 0
@@ -23,10 +24,9 @@ class Player
         @score = newScore
     end
 
+    #TODO: REFACTOR
     def generateHTMLPlayer()
-        return '<h2> El turno es de:' +  @name  +  '</h2>'
+        return '<h2> El turno es de:' +  @name  + @score.to_s + '</h2>'
     end
 
-    #+  @score.to_s +
-    
 end

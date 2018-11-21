@@ -5,7 +5,7 @@ Feature: register players names
 
     Scenario: register the player names
         Given the players page
-        And I fill the "player1" with "John"
+        When I fill the "player1" with "John"
         And I fill the second "player2" with "Pedro"
         Then I press the button "Jugar" to play
       

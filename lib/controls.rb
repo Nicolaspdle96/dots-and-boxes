@@ -1,8 +1,5 @@
 class Controls 
 
-    def initialize()
-    end
-
     def returnHTML()
         completeHTML = ""
         initForm = "<form method='get' action='/pvsp'>"
@@ -16,4 +13,5 @@ class Controls
         completeHTML = initForm + input + upButton + downButton + leftButton + rightButton + finalForm
         return completeHTML
     end
+    
 end
