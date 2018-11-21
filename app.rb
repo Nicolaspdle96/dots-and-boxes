@@ -53,13 +53,13 @@ class App < Sinatra::Base
             settings.turn = 1
         end
         
-       ## acutalPlayer = Player.new(settings.savedP2)
+     
         
 
         #setting game functionality
         numberOfBox =  params[:box].to_i
         direction = params[:direction].to_s
-        newMove = Movement.new(numberOfBox,direction)
+        newMove = Movement.new(numberOfBox,direction,settings.turn)
         settings.movementList.push(newMove)   
 
     
