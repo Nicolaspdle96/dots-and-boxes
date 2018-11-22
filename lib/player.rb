@@ -1,27 +1,27 @@
 class Player
 
-    attr_reader :name, :score
+    attr_reader :name, :score, :color
 
-    #AGREGAR COLOR
-    def initialize(name)
+    def initialize(name,color)
         @name = name
         @score = 0
+        @color = color
     end
 
-    def getName()
-        return @name
+    def name=(value)
+        @name = value
     end
 
-    def getScore()
-        return @score
+    def score=(value)
+        @score = value
     end
 
-    def setName(newName)
-        @name = newName
+    def color=(value)
+        @color = value
     end
 
-    def setScore(newScore)
-        @score = newScore
+    def addPoint() 
+        @score = @score + 1
     end
 
     #TODO: REFACTOR

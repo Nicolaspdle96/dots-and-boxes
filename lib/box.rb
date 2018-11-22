@@ -2,7 +2,7 @@ require 'sinatra'
 
 class Box
 
-    attr_reader :numberIdentifier, :upSide, :downSide, :leftSide, :rightSide, :color
+    attr_reader :numberIdentifier, :upSide, :downSide, :leftSide, :rightSide, :borderColorUp, :borderColorDown, :borderColorLeft, :borderColorRight
    
     def initialize(numberIdentifier)
         @numberIdentifier = numberIdentifier
@@ -10,8 +10,12 @@ class Box
         @downSide = false
         @leftSide = false
         @rightSide = false
-        #TODO: ADD MORE VARIABLES FOR EACH SIDE
-        @color = "pink"
+
+        @borderColorUp = "pink"
+        @borderColorDown = "pink"
+        @borderColorLeft = "pink"
+        @borderColorRight = "pink"
+        
         @backgroundColor = "red"
     end
 
@@ -31,9 +35,20 @@ class Box
         @rightSide = value
     end
 
-    #TODO: ADD MORE VARIABLES FOR EACH SIDE
-    def color=(value)              
-        @color = value
+    def borderColorUp=(value)              
+        @borderColorUp = value
+    end
+
+    def borderColorDown=(value)              
+        @borderColorDown = value
+    end
+
+    def borderColorLeft=(value)              
+        @borderColorLeft = value
+    end
+
+    def borderColorRight=(value)              
+        @borderColorRight = value
     end
 
     def isEmpty()
@@ -59,16 +74,16 @@ class Box
         cssEnd = "</style>"
 
         if @upSide == true then 
-            cssContent += "border-top-color:" + @color + ";"
+            cssContent += "border-top-color:" + @borderColorUp + ";"
         end
         if @downSide == true then
-            cssContent += "border-bottom-color:" + @color + ";"
+            cssContent += "border-bottom-color:" + @borderColorDown + ";"
         end
         if @leftSide == true then
-            cssContent += "border-left-color:" + @color + ";"
+            cssContent += "border-left-color:" + @borderColorLeft + ";"
         end
         if @rightSide == true then
-            cssContent += "border-right-color:"+ @color + ";"
+            cssContent += "border-right-color:"+ @borderColorRight + ";"
         end
         
         if isCompleted() then
@@ -88,14 +103,6 @@ class Box
         return generateHtml() + generateCss()
     end
 
-    #TODO: REFACTOR
-    def setPlayer1Turn()
-        @color = "red"
-    end
-
-    def setPlayer2Turn()
-        @color = "blue"
-    end
     
 
 end
