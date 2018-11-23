@@ -4,17 +4,17 @@ require './lib/player'
 
 class Board
 
-    attr_reader :size, :hasError, :turn, :numberOfPlayers, :player1, :player2, :player3, :player4, :actualPlayer
+    attr_reader :size, :hasError, :turn, :numberOfPlayers, :player1, :player2, :player3, :player4, :actualPlayer, :completedboxes
 
     def initialize(size, numberOfPlayers)
         @size = size
-        #TODO: Que no cambie el turno al haber un error
         @hasError = false
         @errorMessage = ""
         @turn = 1
         @numberOfPlayers = numberOfPlayers
+        @completedBoxes = []
        
-        #default plyaers
+        #default players
         @player1 = Player.new('Joe','red')
         @player2 = Player.new('Miranda', 'blue')
         @player3 = Player.new('Mike','green')
@@ -26,16 +26,28 @@ class Board
         @numberOfPlayers = value
     end
 
-    def setupPlayerNames(numberOfPlayer,playerName)
+    def completedboxes=(value)              
+        @completedboxes = value
+    end
+
+    def turn=(value)              
+        @turn = value
+    end
+
+    def setupPlayerNames(numberOfPlayer,player)
         case numberOfPlayer 
         when 1
-            @player1.name = playerName
+            @player1.name = player.name
+            @player1.score = player.score
         when 2
-            @player2.name = playerName
+            @player2.name = player.name
+            @player2.score = player.score
         when 3
-            @player3.name = playerName
+            @player3.name = player.name
+            @player3.score = player.score
         when 4
-            @player4.name = playerName
+            @player4.name = player.name
+            @player4.score = player.score
         end
     end
 
@@ -51,7 +63,7 @@ class Board
 
                 for movement in movements
                     if $j == movement.id then
-                        processMovement(movement.direction, @box)
+                        processMovement(movement.direction, @box, movement.player)
                         @hasError = false
                     else
                         @hasError = true
@@ -69,54 +81,32 @@ class Board
         return completeHTML
     end
 
-
-    #TODO: REFACTORIZAR
-    def verify(movements)
-        $j = 1
-        $i = 1
-        row = 1 
-
-        while $i <= @size  do
-            while $j <= @size * row   do
-                @box = Box.new($j)
-                for movement in movements
-                    if $j == movement.id then
-                        processMovement(movement.direction, @box)
-                    end
-                end
-                $j +=1
-            end
-            row += 1
-            $i +=1
+    def verifyErrors(movement)
+        if movement.id <= 0 || movement.id > size*size then
+            return true
         end
     end
 
-    def processMovement(direction, box)
+    def processMovement(direction, box, player)
         
-
         case direction
         when 'up'
             box.upSide = true
-            box.borderColorUp = actualPlayer().color
+            box.borderColorUp = player.color
         when 'down'
             box.downSide = true
-            box.borderColorDown = actualPlayer().color
+            box.borderColorDown = player.color
         when 'left'
             box.leftSide = true
-            box.borderColorLeft = actualPlayer().color
+            box.borderColorLeft = player.color
         when 'right'
             box.rightSide = true
-            box.borderColorRight = actualPlayer().color
+            box.borderColorRight = player.color
         end
-
-        puts actualPlayer().name
 
         if box.isCompleted() then
-            actualPlayer().addPoint()
-        end
-
-        if hasError == false then
-            changeTurn()
+            box.backgroundColor = player.color
+            @completedBoxes.push(player.name)
         end
 
     end
@@ -136,13 +126,23 @@ class Board
     end
 
     def changeTurn()
-        if @turn < @numberOfPlayers then
-            @turn = @turn + 1
-        else
-            @turn = 1
+        if !@hasError then
+            if @turn < @numberOfPlayers then
+                @turn = @turn + 1
+            else
+                @turn = 1
+            end
         end
     end 
 
-
+    def countPoints(player)
+        total = 0
+            for completedBox in @completedBoxes
+                if completedBox == player then
+                    total = total + 1
+                end
+            end
+        return total
+    end
 
 end

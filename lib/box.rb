@@ -2,7 +2,7 @@ require 'sinatra'
 
 class Box
 
-    attr_reader :numberIdentifier, :upSide, :downSide, :leftSide, :rightSide, :borderColorUp, :borderColorDown, :borderColorLeft, :borderColorRight
+    attr_reader :numberIdentifier, :upSide, :downSide, :leftSide, :rightSide, :borderColorUp, :borderColorDown, :borderColorLeft, :borderColorRight, :backgroundColor
    
     def initialize(numberIdentifier)
         @numberIdentifier = numberIdentifier
@@ -17,6 +17,7 @@ class Box
         @borderColorRight = "pink"
         
         @backgroundColor = "red"
+
     end
 
     def upSide=(value)              
@@ -49,6 +50,10 @@ class Box
 
     def borderColorRight=(value)              
         @borderColorRight = value
+    end
+
+    def backgroundColor=(value)              
+        @backgroundColor = value
     end
 
     def isEmpty()
@@ -102,7 +107,5 @@ class Box
     def renderHTMLandCSS()
         return generateHtml() + generateCss()
     end
-
-    
 
 end

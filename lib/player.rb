@@ -24,9 +24,8 @@ class Player
         @score = @score + 1
     end
 
-    #TODO: REFACTOR
     def generateHTMLPlayer()
-        return '<h2> El turno es de:' +  @name  + @score.to_s + '</h2>'
+        return '<h2> El turno es de:' +  @name  + ' ' + @score.to_s + '</h2>'
     end
 
 end
