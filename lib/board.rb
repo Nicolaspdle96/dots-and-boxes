@@ -85,6 +85,7 @@ class Board
         if movement.id <= 0 || movement.id > size*size then
             return true
         end
+        return false
     end
 
     def processMovement(direction, box, player)

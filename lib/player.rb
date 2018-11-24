@@ -20,12 +20,8 @@ class Player
         @color = value
     end
 
-    def addPoint() 
-        @score = @score + 1
-    end
-
     def generateHTMLPlayer()
-        return '<h2> El turno es de:' +  @name  + ' ' + @score.to_s + '</h2>'
+        return '<h2> El turno es de:' +  @name  + ' Puntaje: ' + @score.to_s + '</h2>'
     end
 
 end
