@@ -28,6 +28,10 @@
             <%= @controls.returnHTML() %>
             <div class="invalidMovement"><%= @errorMessage %></div>
         </div>
+
+        <% @board.player1.score = @board.countPoints(@board.player1.name) %>
+        <% @board.player2.score = @board.countPoints(@board.player2.name) %>
+
         <div class="col-md-4">
             <% if @board.turn==1 %>
                 <div class="turn1"><%= @board.player1.generateHTMLPlayer() %></div>
