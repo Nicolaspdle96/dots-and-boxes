@@ -29,7 +29,7 @@ class App < Sinatra::Base
         
         #setting board
         @controls = Controls.new()
-        @board = Board.new(4,2)
+        @board = Board.new(2,2)
         @movement = settings.movementList
         @errorMessage = ""
 
@@ -57,7 +57,7 @@ class App < Sinatra::Base
         newMove = Movement.new(numberOfBox,direction, @board.actualPlayer())
 
         if (@board.verifyErrors(newMove) and settings.turn!=0) or @movement.include?(newMove) then
-            @errorMessage = "Movilimiento inválido"
+            @errorMessage = "Movimiento inválido"
         else
             settings.movementList.push(newMove) 
             if settings.turn == 0 then

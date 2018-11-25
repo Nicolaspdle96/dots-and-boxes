@@ -113,8 +113,6 @@ class Board
             @completedBoxes.push(player.name)
         end
 
-        verifyIfTheGameHasFinished()
-
     end
 
     def actualPlayer()
@@ -158,6 +156,9 @@ class Board
     end
 
     def getTheWinner()
+        if itsATie()
+            return 'Empate'
+        end
         if @player1.score > @player2.score and @player1.score > @player3.score and @player1.score > @player4.score then
             return @player1.name 
         else

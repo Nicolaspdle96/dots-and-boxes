@@ -85,11 +85,10 @@ describe Board do
         expect(@board.gameFinished). to eq true
     end
 
-    it 'should return Jose when he win the game' do
-        @board.setupPlayerNames(1, @player1)
+    it 'should return Joe when he win the game' do
         @board.player1.score = 10
         @board.player2.score = 6
-        expect(@board.getTheWinner()). to eq 'Jose'
+        expect(@board.getTheWinner()). to eq 'Joe'
     end
 
     it 'should return true when the game finished in a tie' do
@@ -97,6 +96,12 @@ describe Board do
         @board.player1.score = 6
         @board.player2.score = 6
         expect(@board.itsATie()). to eq true
+    end
+
+    it 'should return Empate when the game finished in a tie' do
+        @board.player1.score = 8
+        @board.player2.score = 8
+        expect(@board.getTheWinner()). to eq 'Empate'
     end
 
 end
