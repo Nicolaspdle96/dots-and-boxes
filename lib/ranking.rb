@@ -33,9 +33,14 @@ class Ranking
     end
 
     def sortList(player)
-        if player.score > @number1.score then
+        if player.score > @number1.score 
             aux = @number1.name
             @number1 = player
+            else
+                if player.score > @number2.score
+                    aux = @number2.name
+                    @number2 = player
+                end
         end
     end
 
