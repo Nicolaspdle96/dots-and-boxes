@@ -2,6 +2,8 @@ require './lib/box'
 require './lib/movement'
 require './lib/player'
 
+#test for travis
+
 class Board
 
     attr_reader :size, :hasError, :turn, :numberOfPlayers, :player1, :player2, :player3, :player4, :actualPlayer, :completedboxes
