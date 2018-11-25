@@ -92,4 +92,11 @@ describe Board do
         expect(@board.getTheWinner()). to eq 'Jose'
     end
 
+    it 'should return true when the game finished in a tie' do
+        @board = Board.new(4,2)
+        @board.player1.score = 6
+        @board.player2.score = 6
+        expect(@board.itsATie()). to eq true
+    end
+
 end

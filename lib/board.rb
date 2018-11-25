@@ -127,8 +127,7 @@ class Board
                 return @player3 
             when 4
                 return @player4
-        end
-               
+        end  
     end
 
     def changeTurn()
@@ -170,6 +169,17 @@ class Board
             else
                 return @player4.name
             end
+        end
+    end
+
+    def itsATie()
+        case @numberOfPlayers
+        when 2
+            @player1.score == @player2.score ? true : false
+        when 3
+            @player1.score == @player2.score and @player2.score == @player3.score ? true : false
+        when 4
+            @player1.score == @player2.score and @player2.score == @player3.score and @player3.score == @player4.score ? true : false
         end
     end
 
