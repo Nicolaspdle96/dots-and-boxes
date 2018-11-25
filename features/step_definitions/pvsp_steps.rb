@@ -47,4 +47,18 @@ Given("the pvsp page") do
   Then("I see the player with one point") do 
     expect(page).to have_content('Puntaje: 1')
   end
+
+  When("I completed all the boxes") do
+    @sides = ['up','down','right','left']
+    for i in 1..16
+      for side in @sides
+        fill_in 'box', :with => i
+        click_button(side)
+      end
+    end
+  end
+  
+  Then("I see El ganador es:") do
+    expect(page).to have_content('El Ganador es:')
+  end
   

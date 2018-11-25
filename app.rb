@@ -12,6 +12,7 @@ class App < Sinatra::Base
     set :savedP1, Player.new('Joe','red')
     set :savedP2, Player.new('Miranda', 'blue')
     set :turn, 0
+    set :endGame, false
 
     configure do
         set :my_config_property, 'hello'
@@ -29,7 +30,7 @@ class App < Sinatra::Base
         
         #setting board
         @controls = Controls.new()
-        @board = Board.new(2,2)
+        @board = Board.new(4,2)
         @movement = settings.movementList
         @errorMessage = ""
 
@@ -56,7 +57,7 @@ class App < Sinatra::Base
         direction = params[:direction].to_s
         newMove = Movement.new(numberOfBox,direction, @board.actualPlayer())
 
-        if (@board.verifyErrors(newMove) and settings.turn!=0) or @movement.include?(newMove) then
+        if (@board.verifyErrors(newMove) and settings.turn!=0) or @movement.include?(newMove) or settings.endGame then
             @errorMessage = "Movimiento inválido"
         else
             settings.movementList.push(newMove) 

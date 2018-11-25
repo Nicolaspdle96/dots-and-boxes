@@ -36,6 +36,7 @@
         <% @board.player2.score = @board.countPoints(@board.player2.name) %>
 
         <% @board.verifyIfTheGameHasFinished() %>
+        <% settings.endGame = @board.gameFinished %>
 
         <div class="col-md-4">
         <% if !@board.gameFinished %>
