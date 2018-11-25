@@ -74,4 +74,8 @@ describe Board do
         expect(@board.turn). to eq 2
     end
 
+    it 'should return false when the game didnt finish' do
+        expect(@board.gameFinished). to eq false
+    end
+
 end

@@ -8,7 +8,8 @@ Given("the pvsp page") do
   end
   
   Then("I see whose turn is it") do
-    expect(page).to have_css('.turn1')
+    #expect(page).to have_css('.turn1')
+    find('.turn1')['style'].should == 'background-color: red'
   end
 
   When("fill the first input {string} with {string}") do |inputName, boxId|

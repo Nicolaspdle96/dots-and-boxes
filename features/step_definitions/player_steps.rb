@@ -13,5 +13,4 @@ Given("the players page") do
   Then("I see the title {string}") do |title|
     visit('/pvsp')
     expect(page).to have_content(title)
-   
   end

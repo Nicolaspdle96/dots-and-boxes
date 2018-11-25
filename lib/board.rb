@@ -6,7 +6,7 @@ require './lib/player'
 
 class Board
 
-    attr_reader :size, :hasError, :turn, :numberOfPlayers, :player1, :player2, :player3, :player4, :actualPlayer, :completedboxes
+    attr_reader :size, :hasError, :turn, :numberOfPlayers, :player1, :player2, :player3, :player4, :actualPlayer, :completedboxes, :gameFinished
 
     def initialize(size, numberOfPlayers)
         @size = size
@@ -15,6 +15,7 @@ class Board
         @turn = 1
         @numberOfPlayers = numberOfPlayers
         @completedBoxes = []
+        @gameFinished = false
        
         #default players
         @player1 = Player.new('Joe','red')

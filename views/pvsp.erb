@@ -34,12 +34,12 @@
 
         <div class="col-md-4">
             <% if @board.turn==1 %>
-                <div class="turn1"><%= @board.player1.generateHTMLPlayer() %></div>
+                <div class="turn1" style="background-color: red"><%= @board.player1.generateHTMLPlayer() %></div>
             <% else%>
                 <%= @board.player1.generateHTMLPlayer() %>
             <% end %>
             <% if @board.turn==2 %>
-                <div class="turn2"><%= @board.player2.generateHTMLPlayer() %></div>
+                <div class="turn2" style="background-color: blue"><%= @board.player2.generateHTMLPlayer() %></div>
             <% else%>
                 <%= @board.player2.generateHTMLPlayer() %>
             <% end %>
