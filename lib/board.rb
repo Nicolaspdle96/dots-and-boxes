@@ -113,6 +113,8 @@ class Board
             @completedBoxes.push(player.name)
         end
 
+        verifyIfTheGameHasFinished()
+
     end
 
     def actualPlayer()
@@ -147,6 +149,13 @@ class Board
                 end
             end
         return total
+    end
+
+    def verifyIfTheGameHasFinished()
+        total = @player1.score + @player2.score + @player3.score + @player4.score
+        if total == size * size then
+            @gameFinished = true
+        end
     end
 
 end

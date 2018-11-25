@@ -78,4 +78,11 @@ describe Board do
         expect(@board.gameFinished). to eq false
     end
 
+    it 'should finish the game when the number of points of all players equals the number of boxes' do
+        @board.player1.score = 8
+        @board.player2.score = 8
+        @board.verifyIfTheGameHasFinished()
+        expect(@board.gameFinished). to eq true
+    end
+
 end

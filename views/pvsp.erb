@@ -33,6 +33,7 @@
         <% @board.player2.score = @board.countPoints(@board.player2.name) %>
 
         <div class="col-md-4">
+        <% if !@board.gameFinished %>
             <% if @board.turn==1 %>
                 <div class="turn1" style="background-color: red"><%= @board.player1.generateHTMLPlayer() %></div>
             <% else%>
@@ -43,6 +44,9 @@
             <% else%>
                 <%= @board.player2.generateHTMLPlayer() %>
             <% end %>
+        <% else%>
+            <div></div>
+        <% end %>
         </div>
     </div>
 </div>
