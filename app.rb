@@ -11,6 +11,8 @@ class App < Sinatra::Base
     set :movementList, []
     set :savedP1, Player.new('Joe','red')
     set :savedP2, Player.new('Miranda', 'blue')
+    set :savedP3, Player.new('Jill','green')
+    set :saved, Player.new('Emmy','yellow')
     set :turn, 0
     set :endGame, false
 
@@ -26,8 +28,12 @@ class App < Sinatra::Base
         erb:players
     end 
 
-    get '/moreplayers' do 
-        erb:moreplayers
+    get '/threePlayers' do 
+        erb:threePlayers
+    end
+
+    get '/fourPlayers' do 
+        erb:fourPlayers
     end
 
     get '/pvsp' do  #player VS player
@@ -75,6 +81,16 @@ class App < Sinatra::Base
 
         erb:pvsp
            
+    end
+
+    get '/multiplayerThree' do
+
+        erb:multiplayerThree
+    end
+
+    get '/multiplayerFour' do
+
+        erb:multiplayerFour
     end
 
     run! if app_file == $0;

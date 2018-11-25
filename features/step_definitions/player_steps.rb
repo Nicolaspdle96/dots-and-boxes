@@ -2,9 +2,13 @@ Given("the players page") do
     visit('/players')
   end
 
-Given("the moreplayers page") do
-    visit('/moreplayers')
-end
+  Given("the  threePlayers page") do
+   visit('/threePlayers')
+  end
+
+  Given("the  fourPlayers page") do
+    visit('/fourPlayers')
+   end
   
   Given("I fill the {string} with {string}") do |field, name|
     fill_in 'player1', :with => name
