@@ -1,4 +1,4 @@
-require './lib/Player'
+require './lib/player'
 
 class Movement
     
