@@ -1,3 +1,5 @@
+require "./lib/player"
+
 class Ranking
 
     attr_reader :number1, :number2, :number3, :number4, :number5
@@ -30,5 +32,11 @@ class Ranking
         @number5 = value
     end
 
+    def sortList(player)
+        if player.score > @number1.score then
+            aux = @number1.name
+            @number1 = player
+        end
+    end
 
 end
