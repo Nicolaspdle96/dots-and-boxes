@@ -5,6 +5,5 @@ Feature: home
 
     Scenario: player vs player choosen
         Given the home page
-        When I press the button "Player vs Player"
-        Then I should see the page with  title "game"
-    
+        When I press the button "Jugador vs Jugador"
+        Then I should see the page with  title "Ingrese los nombres de los jugadores:"

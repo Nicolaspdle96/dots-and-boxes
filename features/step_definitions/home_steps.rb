@@ -1,4 +1,4 @@
-  Given("the home page") do
+Given("the home page") do
     visit('/')
   end
   
