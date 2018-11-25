@@ -3,6 +3,7 @@ require './lib/board'
 require './lib/player'
 require './lib/movement'
 require './lib/controls'
+require './lib/ranking'
 
 
 
@@ -13,6 +14,7 @@ class App < Sinatra::Base
     set :savedP2, Player.new('Miranda', 'blue')
     set :turn, 0
     set :endGame, false
+    set :ranking, Ranking.new()
 
     configure do
         set :my_config_property, 'hello'
@@ -68,10 +70,12 @@ class App < Sinatra::Base
                 settings.turn = @board.turn
             end
         end
-
-        erb:pvsp
-           
+        erb:pvsp  
     end
+
+    get '/ranking' do
+        erb:ranking
+    end 
 
     run! if app_file == $0;
 end

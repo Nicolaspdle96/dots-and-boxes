@@ -23,7 +23,6 @@
 
 
 <h1 class="col-md-5 mx-auto">Game</h1>
-
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -51,7 +50,10 @@
                 <%= @board.player2.generateHTMLPlayer() %>
             <% end %>
         <% else%>
+            <% settings.ranking.sortList(@board.player1)%>
+            <% settings.ranking.sortList(@board.player2)%>
             <div class="winner">El Ganador es: <%= @board.getTheWinner() %> !!!! </div>
+            <a class="btn btn-primary" href="/ranking">Lista Mejores Jugadores</a>
         <% end %>
         </div>
     </div>
@@ -59,9 +61,3 @@
 
 <% settings.savedP1.score = @board.player1.score %>
 <% settings.savedP2.score = @board.player2.score %>
-
-
-
-
-
-
