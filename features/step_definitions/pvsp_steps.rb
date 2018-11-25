@@ -8,7 +8,8 @@ Given("the pvsp page") do
   end
   
   Then("I see whose turn is it") do
-    expect(page).to have_css('.turn1')
+    #expect(page).to have_css('.turn1')
+    find('.turn1')['style'].should == 'background-color: red'
   end
 
   When("fill the first input {string} with {string}") do |inputName, boxId|
@@ -45,5 +46,19 @@ Given("the pvsp page") do
 
   Then("I see the player with one point") do 
     expect(page).to have_content('Puntaje: 1')
+  end
+
+  When("I completed all the boxes") do
+    @sides = ['up','down','right','left']
+    for i in 1..16
+      for side in @sides
+        fill_in 'box', :with => i
+        click_button(side)
+      end
+    end
+  end
+  
+  Then("I see El ganador es:") do
+    expect(page).to have_content('El Ganador es:')
   end
   

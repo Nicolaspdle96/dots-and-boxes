@@ -20,5 +20,9 @@ Feature: play game
         And fill the fouth input "box" with "1"
         And I pressbutton with left
         Then I see the player with one point
+    Scenario: see the name of the winner
+        Given the pvsp page
+        When I completed all the boxes
+        Then I see El ganador es:
 
       

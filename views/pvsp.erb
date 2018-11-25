@@ -15,6 +15,9 @@
             color: red;
   			font-size: 2em;
         }
+        .winner{
+  			font-size: 2.5em;
+        }
     </style>
 </head>
 
@@ -32,17 +35,24 @@
         <% @board.player1.score = @board.countPoints(@board.player1.name) %>
         <% @board.player2.score = @board.countPoints(@board.player2.name) %>
 
+        <% @board.verifyIfTheGameHasFinished() %>
+        <% settings.endGame = @board.gameFinished %>
+
         <div class="col-md-4">
+        <% if !@board.gameFinished %>
             <% if @board.turn==1 %>
-                <div class="turn1"><%= @board.player1.generateHTMLPlayer() %></div>
+                <div class="turn1" style="background-color: red"><%= @board.player1.generateHTMLPlayer() %></div>
             <% else%>
                 <%= @board.player1.generateHTMLPlayer() %>
             <% end %>
             <% if @board.turn==2 %>
-                <div class="turn2"><%= @board.player2.generateHTMLPlayer() %></div>
+                <div class="turn2" style="background-color: blue"><%= @board.player2.generateHTMLPlayer() %></div>
             <% else%>
                 <%= @board.player2.generateHTMLPlayer() %>
             <% end %>
+        <% else%>
+            <div class="winner">El Ganador es: <%= @board.getTheWinner() %> !!!! </div>
+        <% end %>
         </div>
     </div>
 </div>

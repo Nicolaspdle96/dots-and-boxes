@@ -74,4 +74,34 @@ describe Board do
         expect(@board.turn). to eq 2
     end
 
+    it 'should return false when the game didnt finish' do
+        expect(@board.gameFinished). to eq false
+    end
+
+    it 'should finish the game when the number of points of all players equals the number of boxes' do
+        @board.player1.score = 8
+        @board.player2.score = 8
+        @board.verifyIfTheGameHasFinished()
+        expect(@board.gameFinished). to eq true
+    end
+
+    it 'should return Joe when he win the game' do
+        @board.player1.score = 10
+        @board.player2.score = 6
+        expect(@board.getTheWinner()). to eq 'Joe'
+    end
+
+    it 'should return true when the game finished in a tie' do
+        @board = Board.new(4,2)
+        @board.player1.score = 6
+        @board.player2.score = 6
+        expect(@board.itsATie()). to eq true
+    end
+
+    it 'should return Empate when the game finished in a tie' do
+        @board.player1.score = 8
+        @board.player2.score = 8
+        expect(@board.getTheWinner()). to eq 'Empate'
+    end
+
 end

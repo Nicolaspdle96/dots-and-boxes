@@ -6,7 +6,7 @@ require './lib/player'
 
 class Board
 
-    attr_reader :size, :hasError, :turn, :numberOfPlayers, :player1, :player2, :player3, :player4, :actualPlayer, :completedboxes
+    attr_reader :size, :hasError, :turn, :numberOfPlayers, :player1, :player2, :player3, :player4, :actualPlayer, :completedboxes, :gameFinished
 
     def initialize(size, numberOfPlayers)
         @size = size
@@ -15,6 +15,7 @@ class Board
         @turn = 1
         @numberOfPlayers = numberOfPlayers
         @completedBoxes = []
+        @gameFinished = false
        
         #default players
         @player1 = Player.new('Joe','red')
@@ -124,8 +125,7 @@ class Board
                 return @player3 
             when 4
                 return @player4
-        end
-               
+        end  
     end
 
     def changeTurn()
@@ -146,6 +146,42 @@ class Board
                 end
             end
         return total
+    end
+
+    def verifyIfTheGameHasFinished()
+        total = @player1.score + @player2.score + @player3.score + @player4.score
+        if total == size * size then
+            @gameFinished = true
+        end
+    end
+
+    def getTheWinner()
+        if itsATie()
+            return 'Empate'
+        end
+        if @player1.score > @player2.score and @player1.score > @player3.score and @player1.score > @player4.score then
+            return @player1.name 
+        else
+            if @player2.score > @player3.score and @player2.score > @player4.score then
+                return @player2.name 
+            end
+            if @player3.score > @player4.score then
+                return @player3.name
+            else
+                return @player4.name
+            end
+        end
+    end
+
+    def itsATie()
+        case @numberOfPlayers
+        when 2
+            @player1.score == @player2.score ? true : false
+        when 3
+            @player1.score == @player2.score and @player2.score == @player3.score ? true : false
+        when 4
+            @player1.score == @player2.score and @player2.score == @player3.score and @player3.score == @player4.score ? true : false
+        end
     end
 
 end
