@@ -26,6 +26,10 @@ class App < Sinatra::Base
         erb:players
     end 
 
+    get '/moreplayers' do 
+        erb:moreplayers
+    end
+
     get '/pvsp' do  #player VS player
         
         #setting board
