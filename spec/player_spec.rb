@@ -3,7 +3,7 @@ require "./lib/player"
 describe Player do
 
     before(:each) do
-        @pl = Player.new('','');
+        @pl = Player.new('','')
     end
 
     it "should create a player with empty name" do
