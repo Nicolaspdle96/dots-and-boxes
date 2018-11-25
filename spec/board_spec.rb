@@ -85,4 +85,11 @@ describe Board do
         expect(@board.gameFinished). to eq true
     end
 
+    it 'should return Jose when he win the game' do
+        @board.setupPlayerNames(1, @player1)
+        @board.player1.score = 10
+        @board.player2.score = 6
+        expect(@board.getTheWinner()). to eq 'Jose'
+    end
+
 end

@@ -158,4 +158,19 @@ class Board
         end
     end
 
+    def getTheWinner()
+        if @player1.score > @player2.score and @player1.score > @player3.score and @player1.score > @player4.score then
+            return @player1.name 
+        else
+            if @player2.score > @player3.score and @player2.score > @player4.score then
+                return @player2.name 
+            end
+            if @player3.score > @player4.score then
+                return @player3.name
+            else
+                return @player4.name
+            end
+        end
+    end
+
 end
