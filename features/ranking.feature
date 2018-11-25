@@ -4,6 +4,6 @@ Feature: ranking
     SO THAT I can know how much points i need to be there
 
     Scenario: see the number 1
-        Given the pvsp
+        Given the game page
         When The game has finish I press the button 'Lista Mejores Jugadores'
         Then I should see the page with title a list with scores

@@ -32,7 +32,7 @@ class App < Sinatra::Base
         
         #setting board
         @controls = Controls.new()
-        @board = Board.new(2,2)
+        @board = Board.new(4,2)
         @movement = settings.movementList
         @errorMessage = ""
 

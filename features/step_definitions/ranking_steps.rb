@@ -1,5 +1,5 @@
 
-Given("the pvsp") do
+Given("the game page") do
     visit('/pvsp')
 end
 
