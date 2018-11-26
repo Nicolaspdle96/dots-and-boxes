@@ -15,5 +15,5 @@ When("The game has finish I press the button {string}") do |btn|
 end
 
 Then("I should see the page with title a list with scores") do
-    expect(page).to have_content('1. Pedro 14')
+    expect(page).to have_content('1. Joe 14')
 end

@@ -9,6 +9,13 @@ Feature: play game
     Scenario: see the turn
         Given the pvsp page
         Then I see whose turn is it
+
+    Scenario: make a movement
+        Given the pvsp page
+        When I fill the field box with "2"
+        And I press the button "up"
+        Then I see the turn change
+
     Scenario: see the box completed
         Given the pvsp page
         When fill the first input "box" with "1" 
