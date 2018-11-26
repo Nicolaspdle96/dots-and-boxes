@@ -27,4 +27,19 @@ class Movement
         @player = value
     end
 
+    def isEqual(movement)
+        answer = movement.id == @id and movement.direction == @direction
+        return answer
+    end
+
+
+    def existIn(movements) 
+        answer = false
+        for movement in movements 
+            if movement.id == @id and movement.direction == @direction then
+                answer = true
+            end
+        end
+        return answer
+    end
 end

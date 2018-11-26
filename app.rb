@@ -6,7 +6,9 @@ require './lib/controls'
 
 
 
-class App < Sinatra::Base  
+class App < Sinatra::Base 
+
+ 
 
     set :movementList, []
     set :savedP1, Player.new('Joe','red')
@@ -34,6 +36,7 @@ class App < Sinatra::Base
         @movement = settings.movementList
         @errorMessage = ""
 
+
         
         if settings.turn != 0 then
             @board.turn = settings.turn
@@ -50,14 +53,16 @@ class App < Sinatra::Base
         end
 
         @board.setupPlayerNames(1,settings.savedP1)
-        @board.setupPlayerNames(2,settings.savedP2)  
+        @board.setupPlayerNames(2,settings.savedP2)          
         
         #setting game functionality
         numberOfBox =  params[:box].to_i
         direction = params[:direction].to_s
-        newMove = Movement.new(numberOfBox,direction, @board.actualPlayer())
+        newMove = Movement.new(numberOfBox, direction, @board.actualPlayer())
 
-        if (@board.verifyErrors(newMove) and settings.turn!=0) or @movement.include?(newMove) or settings.endGame then
+        hasNotValidID = (@board.verifyErrors(newMove) and settings.turn!=0)
+
+        if  hasNotValidID or newMove.existIn(@movement)  or settings.endGame then
             @errorMessage = "Movimiento inválido"
         else
             settings.movementList.push(newMove) 
@@ -70,7 +75,6 @@ class App < Sinatra::Base
         end
 
         erb:pvsp
-           
     end
 
     run! if app_file == $0;
