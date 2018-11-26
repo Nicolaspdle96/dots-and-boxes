@@ -1,8 +1,16 @@
 class Controls 
 
-    def returnHTML()
+    def returnHTML(numberPlayers)
         completeHTML = ""
-        initForm = "<form method='get' action='/pvsp'>"
+
+        if numberPlayers==2
+            initForm = "<form method='get' action='/pvsp'>"
+        elsif numberPlayers == 3
+            initForm = "<form method='get' action='/multiplayerThree'>"     
+        else   
+            initForm = "<form method='get' action='/multiplayerFour'>" 
+        end
+       
         input = "<input type='number' name='box'/>"
         upButton = "<input id='up' class='btn btn-primary' type='submit' value='up' name='direction'>"
         downButton = "<input id='down' class='btn btn-success' type='submit' value='down' name='direction'>"

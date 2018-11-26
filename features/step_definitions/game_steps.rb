@@ -62,3 +62,10 @@ Given("the pvsp page") do
     expect(page).to have_content('El Ganador es:')
   end
   
+  When("I fill the field box with {string}") do |boxId|
+    fill_in "box", :with => boxId
+  end
+  
+  Then("I see the turn change") do
+   expect(page).to have_css('.turn2')
+  end
