@@ -66,6 +66,9 @@ class App < Sinatra::Base
             @errorMessage = "Movimiento inválido"
         else
             settings.movementList.push(newMove) 
+            if newMove.complementaryMovement(@board) then
+                settings.movementList.push(newMove.complementaryMovement(@board)) 
+            end
             if settings.turn == 0 then
                 settings.turn = 1
             else
