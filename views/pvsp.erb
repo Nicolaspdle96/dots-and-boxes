@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-md-6">
             <%= @board.generateHTMLandCss(@movement) %>
-            <%= @controls.returnHTML() %>
+            <%= @controls.returnHTML(2) %>
             <div class="invalidMovement"><%= @errorMessage %></div>
         </div>
 

@@ -2,4 +2,84 @@
 <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
 
 
+<head>
+    <style>
+        .turn1{
+            color: #fff;
+  			background-color: red;
+        } 
+        .turn2{
+            color: #fff;
+  			background-color: blue;
+        }
+        .turn3{
+            color: #fff;
+  			background-color: green;
+            
+        }
+        .turn4{
+            color: #fff;
+  			background-color: yellow;
+        }
+        .invalidMovement{
+            color: red;
+  			font-size: 2em;
+        }
+        .winner{
+  			font-size: 2.5em;
+        }
+    </style>
+</head>
+
+
 <h1 class="col-md-5 mx-auto">Game</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <%= @board.generateHTMLandCss(@movement) %>
+            <%= @controls.returnHTML(4) %>
+            <div class="invalidMovement"><%= @errorMessage %></div>
+        </div>
+
+        <% @board.player1.score = @board.countPoints(@board.player1.name) %>
+        <% @board.player2.score = @board.countPoints(@board.player2.name) %>
+        <% @board.player3.score = @board.countPoints(@board.player3.name) %>
+        <% @board.player4.score = @board.countPoints(@board.player4.name) %>
+
+        <% @board.verifyIfTheGameHasFinished() %>
+        <% settings.endGame = @board.gameFinished %>
+
+        <div class="col-md-4">
+        <% if !@board.gameFinished %>
+            <% if @board.turn==1 %>
+                <div class="turn1" style="background-color: red"><%= @board.player1.generateHTMLPlayer() %></div>
+            <% else%>
+                <%= @board.player1.generateHTMLPlayer() %>
+            <% end %>
+            <% if @board.turn==2 %>
+                <div class="turn2" style="background-color: blue"><%= @board.player2.generateHTMLPlayer() %></div>
+            <% else%>
+                <%= @board.player2.generateHTMLPlayer() %>
+            <% end %>
+            <% if @board.turn==3 %>
+                <div class="turn3" style="background-color: green"><%= @board.player3.generateHTMLPlayer() %></div>
+            <% else%>
+                <%= @board.player3.generateHTMLPlayer() %>
+            <% end %>
+            <% if @board.turn==4 %>
+                <div class="turn4" style="background-color: yellow"><%= @board.player4.generateHTMLPlayer() %></div>
+            <% else%>
+                <%= @board.player4.generateHTMLPlayer() %>
+            <% end %>
+        <% else%>
+            <div class="winner">El Ganador es: <%= @board.getTheWinner() %> !!!! </div>
+        <% end %>
+        </div>
+    </div>
+</div>
+
+<% settings.savedP1.score = @board.player1.score %>
+<% settings.savedP2.score = @board.player2.score %>
+<% settings.savedP3.score = @board.player3.score %>
+<% settings.savedP4.score = @board.player4.score %>
