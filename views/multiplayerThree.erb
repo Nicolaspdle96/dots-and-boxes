@@ -66,6 +66,9 @@
             <% end %>
         <% else%>
             <div class="winner">El Ganador es: <%= @board.getTheWinner() %> !!!! </div>
+            <a class="btn btn-primary" href="/ranking">Lista Mejores Jugadores</a>
+            <a class="btn btn-primary" href="/">Nueva partida</a>
+            <a class="btn btn-primary" href="/newGame">Nuevo Juego</a>
         <% end %>
         </div>
     </div>

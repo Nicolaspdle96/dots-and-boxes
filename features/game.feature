@@ -31,5 +31,9 @@ Feature: play game
         Given the pvsp page
         When I completed all the boxes
         Then I see El ganador es:
+    Scenario: start new game
+        Given the pvsp page
+        When I click button "Nuevo Juego"
+        Then I see page with title "Dots and boxes"
 
       

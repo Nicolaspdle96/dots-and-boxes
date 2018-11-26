@@ -47,7 +47,14 @@ class App < Sinatra::Base
         end     
     end
 
+
     get '/pvsp' do  
+
+        # if @board.gameFinished==true then
+        #     puts "JUEGO TERMINADO"
+        #     puts settings.movementList
+        #     cleanList()
+        # end
         
         #setting board
         @controls = Controls.new()
@@ -90,7 +97,12 @@ class App < Sinatra::Base
                 @board.changeTurn()
                 settings.turn = @board.turn
             end
-        end
+
+
+           
+           
+        end      
+       
         erb:pvsp  
     end
 
@@ -140,7 +152,9 @@ class App < Sinatra::Base
                 @board.changeTurn()
                 settings.turn = @board.turn
             end
+            
         end
+          
         erb:multiplayerThree
     end
 
@@ -196,14 +210,22 @@ class App < Sinatra::Base
                 @board.changeTurn()
                 settings.turn = @board.turn
             end
+          
         end 
-
+           
         erb:multiplayerFour
     end
 
     get '/ranking' do
         erb:ranking
     end 
+
+   get '/newGame' do
+        puts "LIMPIAR LISTA"
+        settings.movementList=[]
+        puts settings.movementList
+        erb:home
+    end
 
     run! if app_file == $0;
 end
