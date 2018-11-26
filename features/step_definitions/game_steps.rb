@@ -69,3 +69,12 @@ Given("the pvsp page") do
   Then("I see the turn change") do
    expect(page).to have_css('.turn2')
   end
+
+  When("I click button {string}") do |button|
+   click_link(button)
+  end
+  
+  Then("I see page with title {string}") do |title|
+    expect(page).to have_content(title)
+  end
+
