@@ -7,7 +7,7 @@ require './lib/ranking'
 
 
 
-class App < Sinatra::Base  
+class App < Sinatra::Base 
 
     set :movementList, []
     set :savedP1, Player.new('Joe','red')
@@ -47,7 +47,7 @@ class App < Sinatra::Base
         end     
     end
 
-    get '/pvsp' do  #player VS player
+    get '/pvsp' do  
         
         #setting board
         @controls = Controls.new()
@@ -75,10 +75,15 @@ class App < Sinatra::Base
         direction = params[:direction].to_s
         newMove = Movement.new(numberOfBox,direction, @board.actualPlayer())
 
-        if (@board.verifyErrors(newMove) and settings.turn!=0) or @movement.include?(newMove) or settings.endGame then
+        hasNotValidID = (@board.verifyErrors(newMove) and settings.turn!=0)
+
+        if ( hasNotValidID or newMove.existIn(@movement)) or settings.endGame then
             @errorMessage = "Movimiento inválido"
         else
             settings.movementList.push(newMove) 
+            if newMove.complementaryMovement(@board) then
+                settings.movementList.push(newMove.complementaryMovement(@board)) 
+            end
             if settings.turn == 0 then
                 settings.turn = 1
             else
@@ -118,12 +123,17 @@ class App < Sinatra::Base
         #setting game functionality
         numberOfBox =  params[:box].to_i
         direction = params[:direction].to_s
-        newMove = Movement.new(numberOfBox,direction, @board.actualPlayer())
+        newMove = Movement.new(numberOfBox, direction, @board.actualPlayer())
 
-        if (@board.verifyErrors(newMove) and settings.turn!=0) or @movement.include?(newMove) or settings.endGame then
+        hasNotValidID = (@board.verifyErrors(newMove) and settings.turn!=0)
+
+        if  hasNotValidID or newMove.existIn(@movement) or settings.endGame then
             @errorMessage = "Movimiento inválido"
         else
             settings.movementList.push(newMove) 
+            if newMove.complementaryMovement(@board) then
+                settings.movementList.push(newMove.complementaryMovement(@board)) 
+            end
             if settings.turn == 0 then
                 settings.turn = 1
             else
@@ -168,10 +178,18 @@ class App < Sinatra::Base
         direction = params[:direction].to_s
         newMove = Movement.new(numberOfBox,direction, @board.actualPlayer())
 
-        if (@board.verifyErrors(newMove) and settings.turn!=0) or @movement.include?(newMove) or settings.endGame then
+        hasNotValidID = (@board.verifyErrors(newMove) and settings.turn!=0)
+
+        if ( hasNotValidID or newMove.existIn(@movement)) or settings.endGame then
             @errorMessage = "Movimiento inválido"
         else
             settings.movementList.push(newMove) 
+            if newMove.complementaryMovement(@board) then
+                settings.movementList.push(newMove.complementaryMovement(@board)) 
+            end
+            if newMove.complementaryMovement(@board) then
+                settings.movementList.push(newMove.complementaryMovement(@board)) 
+            end
             if settings.turn == 0 then
                 settings.turn = 1
             else
@@ -182,6 +200,7 @@ class App < Sinatra::Base
 
         erb:multiplayerFour
     end
+
     get '/ranking' do
         erb:ranking
     end 
